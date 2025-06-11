@@ -1,6 +1,6 @@
 namespace Domain.Entities;  
  public class Specialtie : BaseEntity 
  { 
-        public int ProfessionalId { get; set; } 
-        public int SpecialtyId { get; set; } 
+        public Professional? ProfessionalId { get; set; }
+        public Specialty? SpecialtyId { get; set; }
  } 

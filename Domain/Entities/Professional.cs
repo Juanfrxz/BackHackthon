@@ -1,6 +1,7 @@
 namespace Domain.Entities;  
  public class Professional : BaseEntity 
  { 
-        public int ProfessionId { get; set; } 
-        public int ProfileId { get; set; } 
+       public int Id { get; set; }
+       public Profession? ProfessionId { get; set; }
+       public PersonProfile? ProfileId { get; set; }
  } 
