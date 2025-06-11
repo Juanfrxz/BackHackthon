@@ -3,6 +3,6 @@ namespace Domain.Entities;
  { 
         public int Id { get; set; } 
         public string? PhoneNumber { get; set; } 
-        public int ContactTypeId { get; set; } 
-        public int PersonalProfileId { get; set; } 
+        public ContactType? ContactTypeId { get; set; } 
+        public PersonProfile? PersonalProfileId { get; set; } 
  } 
