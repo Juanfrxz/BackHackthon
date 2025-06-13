@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<RiskType> builder)
         {
-            builder.ToTable("RiskType");
+            builder.ToTable("risk_types");
 
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

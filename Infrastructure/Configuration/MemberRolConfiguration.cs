@@ -1,14 +1,15 @@
 using Domain.Entities;
+using Domain.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configuration
 {
-    public class MemberRolConfiguration : IEntityTypeConfiguration<MemberRol>
+    public class MemberRolConfiguration : IEntityTypeConfiguration<UserMemberRoles>
     {
-        public void Configure(EntityTypeBuilder<MemberRol> builder)
+        public void Configure(EntityTypeBuilder<UserMemberRoles> builder)
         {
-            builder.ToTable("MemberRol");
+            builder.ToTable("members_roles");
             
                         
             builder.HasKey(x => new { x.MemberId, x.RolId });
@@ -31,11 +32,11 @@ namespace Infrastructure.Configuration
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .ValueGeneratedOnAddOrUpdate();
             
-            builder.HasOne(e => e.Member)
+            builder.HasOne(e => e.UserMember)
                 .WithMany(et => et.MemberRols)
                 .HasForeignKey(e => e.MemberId);
 
-            builder.HasOne(e => e.Rol)
+            builder.HasOne(e => e.Role)
                 .WithMany(b => b.MemberRols)
                 .HasForeignKey(e => e.RolId);
         }

@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Professional> builder)
         {
-            builder.ToTable("Professional");
+            builder.ToTable("professional");
             
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

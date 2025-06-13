@@ -1,14 +1,15 @@
 using Domain.Entities;
+using Domain.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configuration
 {
-    public class RolConfiguration : IEntityTypeConfiguration<Rol>
+    public class RolConfiguration : IEntityTypeConfiguration<Role>
     {
-        public void Configure(EntityTypeBuilder<Rol> builder)
+        public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.ToTable("Rol");
+            builder.ToTable("role");
             
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

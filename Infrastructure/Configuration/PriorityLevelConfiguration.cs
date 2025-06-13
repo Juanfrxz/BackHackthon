@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<PriorityLevel> builder)
         {
-            builder.ToTable("PriorityLevel");
+            builder.ToTable("priority_levels");
             
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

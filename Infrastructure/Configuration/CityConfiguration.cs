@@ -8,7 +8,7 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
 {
     public void Configure(EntityTypeBuilder<City> builder)
     {
-        builder.ToTable("City");
+        builder.ToTable("cities");
 
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)

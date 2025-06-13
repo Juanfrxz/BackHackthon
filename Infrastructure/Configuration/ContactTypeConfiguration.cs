@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<ContactType> builder)
         {
-            builder.ToTable("ContactType");
+            builder.ToTable("contact_types");
             
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

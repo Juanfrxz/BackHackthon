@@ -1,14 +1,15 @@
 using Domain.Entities;
+using Domain.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;  
 
 namespace Infrastructure.Configuration
 {
-    public class MemberConfiguration : IEntityTypeConfiguration<Member>
+    public class MemberConfiguration : IEntityTypeConfiguration<UserMember>
     {
-        public void Configure(EntityTypeBuilder<Member> builder)
+        public void Configure(EntityTypeBuilder<UserMember> builder)
         {
-            builder.ToTable("Member");
+            builder.ToTable("user_member");
             
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

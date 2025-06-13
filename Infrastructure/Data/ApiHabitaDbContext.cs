@@ -26,7 +26,7 @@ namespace Infrastructure.Data
         public DbSet<SupportNetwork> SupportNetworks { get; set; }
         public DbSet<TypeRelation> TypeRelations { get; set; }
         public DbSet<RiskType> RiskTypes { get; set; }
-        public DbSet<Rol> Rols { get; set; }
+        public DbSet<Role> Rols { get; set; }
         public DbSet<Specialtie> SpecialtiesLinks { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Region> Regions { get; set; }

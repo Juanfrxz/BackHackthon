@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Application.Interfaces;
 
 namespace Infrastructure.Repositories;
-public class RolRepository : GenericRepository<Rol>, IRolRepository
+public class RolRepository : GenericRepository<Role>, IRolRepository
 {
     protected readonly ApiHabitaDbContext _context;
 

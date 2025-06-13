@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Habit> builder)
         {
-            builder.ToTable("Habit");
+            builder.ToTable("habits");
 
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)
