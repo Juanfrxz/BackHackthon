@@ -17,7 +17,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IEmotionalCategoryRepository? _emotionalCategories;
     private IEmotionalTypeRepository? _emotionalTypes;
     private IHabitRepository? _habits;
-    private IMemberRolRepository? _memberRols;
+    private IUserMemberRolRepository? _userMemberRols;
     private IPersonHabitRepository? _personHabits;
     private IPersonProfileRepository? _personProfiles;
     private IPersonTypeRepository? _personTypes;
@@ -138,14 +138,14 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _userMembers;
         }
     }
-    public IMemberRolRepository MemberRols{
+    public IUserMemberRolRepository UserMemberRols{
         get
         {
-            if (_memberRols == null)
+            if (_userMemberRols == null)
             {
-                _memberRols = new MemberRolRepository (_context);
+                _userMemberRols = new UserMemberRolRepository (_context);
             }
-            return _memberRols;
+            return _userMemberRols;
         }
     }
     public IPersonHabitRepository PersonHabits{
