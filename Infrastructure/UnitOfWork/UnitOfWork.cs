@@ -3,6 +3,8 @@ using Domain.Entities;
 using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
+
+namespace Infrastructure.UnitOfWork;
 public class UnitOfWork : IUnitOfWork, IDisposable 
 {
     private readonly ApiHabitaDbContext _context;
