@@ -8,11 +8,13 @@ namespace Infrastructure.Data
     public class ApiHabitaDbContext : DbContext
     {
         public ApiHabitaDbContext(DbContextOptions<ApiHabitaDbContext> options) : base(options) { }
-        public DbSet<City> Citys { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<Constituent> Constituents { get; set; }
         public DbSet<ContactType> ContactTypes { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<EmotionalBlog> EmotionalBlogs { get; set; }
+        public DbSet<EmotionalCategory> EmotionalCategorys { get; set; }
         public DbSet<EmotionalType> EmotionalTypes { get; set; }
         public DbSet<Habit> Habits { get; set; }
         public DbSet<Member> Members { get; set; }

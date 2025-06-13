@@ -9,7 +9,48 @@ namespace Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<RefreshToken> builder)
         {
             builder.ToTable("RefreshToken");
+
             builder.HasKey(e => e.Id);
+            builder.Property(e => e.Id)
+            .HasColumnName("id");
+
+            builder.Property(e => e.Token)
+            .HasColumnName("token")
+            .HasColumnType("text");
+
+            builder.Property(e => e.Expire)
+            .HasColumnName("expire")
+            .HasColumnType("timestamp")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnAdd();
+            
+            builder.Property(e => e.Created)
+            .HasColumnName("created")
+            .HasColumnType("timestamp")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnAdd();
+
+            builder.Property(e => e.Revoked)
+            .HasColumnName("revoked")
+            .HasColumnType("timestamp")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnAdd();
+
+            builder.Property(e => e.CreatedAt)
+                .HasColumnName("createdAt")
+                .HasColumnType("timestamp")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .ValueGeneratedOnAdd();
+
+            builder.Property(e => e.UpdatedAt)
+                .HasColumnName("updatedAt")
+                .HasColumnType("timestamp")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .ValueGeneratedOnAddOrUpdate();
+                
+            builder.HasOne(e => e.Member)
+                .WithMany(m => m.RefreshTokens)
+                .HasForeignKey(e => e.MemberId);
         }
     }
-} 
+}

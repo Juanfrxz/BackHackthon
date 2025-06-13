@@ -9,7 +9,34 @@ namespace Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Specialtie> builder)
         {
             builder.ToTable("Specialtie");
-            builder.HasKey(e => e);
+            
+            builder.HasKey(x => new { x.ProfessionalId, x.SpecialtyId });
+
+            builder.Property(x => x.ProfessionalId)
+                .HasColumnName("professionalId");
+            
+            builder.Property(x => x.SpecialtyId)
+                .HasColumnName("specialtyId");
+
+            builder.Property(e => e.CreatedAt)
+            .HasColumnName("createdAt")
+            .HasColumnType("timestamp")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnAdd();
+
+            builder.Property(e => e.UpdatedAt)
+                .HasColumnName("updatedAt")
+                .HasColumnType("timestamp")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP")
+                .ValueGeneratedOnAddOrUpdate();
+            
+            builder.HasOne(e => e.Professional)
+                .WithMany(et => et.Specialties)
+                .HasForeignKey(e => e.ProfessionalId);
+
+            builder.HasOne(e => e.Specialty)
+                .WithMany(b => b.Specialties)
+                .HasForeignKey(e => e.SpecialtyId);
         }
     }
 } 

@@ -4,4 +4,4 @@ namespace Application.Interfaces;
 public interface ICountryRepository : IGenericRepository<Country> 
 {
      
-} 
+}
