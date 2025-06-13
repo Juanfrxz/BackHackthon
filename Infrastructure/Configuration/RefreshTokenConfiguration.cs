@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<RefreshToken> builder)
         {
-            builder.ToTable("RefreshToken");
+            builder.ToTable("refresh_token");
 
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)
@@ -48,7 +48,7 @@ namespace Infrastructure.Configuration
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .ValueGeneratedOnAddOrUpdate();
                 
-            builder.HasOne(e => e.Member)
+            builder.HasOne(e => e.UserMember)
                 .WithMany(m => m.RefreshTokens)
                 .HasForeignKey(e => e.MemberId);
         }

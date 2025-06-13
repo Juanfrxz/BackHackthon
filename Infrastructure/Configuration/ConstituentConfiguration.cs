@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Constituent> builder)
         {
-            builder.ToTable("Constituent");
+            builder.ToTable("constituents");
             
             builder.HasKey(x => new { x.SupportnetworkId, x.TypeRelationId, x.PriorityLevelId });
 

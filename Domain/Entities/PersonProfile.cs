@@ -1,3 +1,5 @@
+using Domain.Entities.Auth;
+
 namespace Domain.Entities;  
 public class PersonProfile : BaseEntity 
 { 
@@ -9,7 +11,7 @@ public class PersonProfile : BaseEntity
        public int PersonTypeId { get; set; }
        public PersonType? PersonType { get; set; }
        public int MemberId { get; set; }
-       public Member? Member { get; set; }
+       public UserMember? UserMember { get; set; }
        public ICollection<Blog>? Blogs { get; set; }
        public ICollection<PersonHabit>? PersonHabits { get; set; }
        public ICollection<Constituent>? Constituents { get; set; }

@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<EmotionalType> builder)
         {
-            builder.ToTable("EmotionalType");
+            builder.ToTable("emotionals_types");
 
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

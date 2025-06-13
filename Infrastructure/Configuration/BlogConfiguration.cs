@@ -7,7 +7,7 @@ public class BlogConfiguration : IEntityTypeConfiguration<Blog>
 {
     public void Configure(EntityTypeBuilder<Blog> builder)
     {
-        builder.ToTable("Blog");
+        builder.ToTable("blogs");
 
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)

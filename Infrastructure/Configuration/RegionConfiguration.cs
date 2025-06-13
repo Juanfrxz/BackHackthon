@@ -7,7 +7,7 @@ public class RegionConfiguration : IEntityTypeConfiguration<Region>
 {
     public void Configure(EntityTypeBuilder<Region> builder)
     {
-        builder.ToTable("Region");
+        builder.ToTable("region");
 
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)

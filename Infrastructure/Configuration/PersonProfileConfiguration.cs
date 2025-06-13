@@ -7,7 +7,7 @@ public class PersonProfileConfiguration : IEntityTypeConfiguration<PersonProfile
 {
     public void Configure(EntityTypeBuilder<PersonProfile> builder)
     {
-        builder.ToTable("PersonProfile");
+        builder.ToTable("persons_profiles");
 
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id)
@@ -41,7 +41,7 @@ public class PersonProfileConfiguration : IEntityTypeConfiguration<PersonProfile
             .WithMany(pt => pt.PersonProfiles)
             .HasForeignKey(e => e.PersonTypeId);
 
-        builder.HasOne(e => e.Member)
+        builder.HasOne(e => e.UserMember)
             .WithMany(m => m.PersonProfiles)
             .HasForeignKey(e => e.MemberId);
     }

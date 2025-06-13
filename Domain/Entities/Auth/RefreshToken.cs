@@ -1,3 +1,5 @@
+using Domain.Entities.Auth;
+
 namespace Domain.Entities;  
 public class RefreshToken : BaseEntity 
 { 
@@ -7,5 +9,5 @@ public class RefreshToken : BaseEntity
        public DateTime Created { get; set; } 
        public DateTime Revoked { get; set; } 
        public int MemberId { get; set; }
-       public Member? Member { get; set; }
+       public UserMember? UserMember { get; set; }
 }
