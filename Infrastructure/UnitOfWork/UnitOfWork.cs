@@ -17,7 +17,6 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IEmotionalCategoryRepository? _emotionalCategories;
     private IEmotionalTypeRepository? _emotionalTypes;
     private IHabitRepository? _habits;
-    private IMemberRepository? _members;
     private IMemberRolRepository? _memberRols;
     private IPersonHabitRepository? _personHabits;
     private IPersonProfileRepository? _personProfiles;
@@ -34,6 +33,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private ISpecialtyRepository? _specialtys;
     private ISupportNetworkRepository? _supportNetworks;
     private ITypeRelationRepository? _typeRelations;
+    private IUserMemberRepository? _userMembers;
    public UnitOfWork(ApiHabitaDbContext context) 
    { 
        _context = context; 
@@ -128,14 +128,14 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _habits;
         }
     }
-    public IMemberRepository Members{
+    public IUserMemberRepository UserMembers{
         get
         {
-            if (_members == null)
+            if (_userMembers == null)
             {
-                _members = new MemberRepository (_context);
+                _userMembers = new UserMemberRepository (_context);
             }
-            return _members;
+            return _userMembers;
         }
     }
     public IMemberRolRepository MemberRols{

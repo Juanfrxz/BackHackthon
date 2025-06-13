@@ -6,11 +6,11 @@ using Application.Interfaces;
 using Domain.Entities.Auth;
 
 namespace Infrastructure.Repositories;
-public class MemberRepository : GenericRepository<UserMember>, IMemberRepository
+public class UserMemberRepository : GenericRepository<UserMember>, IUserMemberRepository
 {
     protected readonly ApiHabitaDbContext _context;
 
-    public MemberRepository(ApiHabitaDbContext context) : base(context)
+    public UserMemberRepository(ApiHabitaDbContext context) : base(context)
     {
         _context = context;
     }

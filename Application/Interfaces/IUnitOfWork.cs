@@ -9,7 +9,7 @@ public interface IUnitOfWork {
         IEmotionalCategoryRepository EmotionalCategories { get; }
         IEmotionalTypeRepository EmotionalTypes { get; }
         IHabitRepository Habits { get; }
-        IMemberRepository Members { get; }
+        IUserMemberRepository UserMembers { get; }
         IMemberRolRepository MemberRols { get; }
         IPersonHabitRepository PersonHabits { get; }
         IPersonProfileRepository PersonProfiles { get; }
