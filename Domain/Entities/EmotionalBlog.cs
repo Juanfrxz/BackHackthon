@@ -1,10 +1,8 @@
 namespace Domain.Entities;  
- public class EmotionalBlog : BaseEntity 
- { 
-        public int Id { get; set; } 
-        public string? Summary { get; set; } 
-        public DateTime LogDate { get; set; } 
-        public PersonProfile? PersonProfileId { get; set; }
-        public RiskType? RiskTypeId { get; set; }
-        public EmotionalType? EmotionalTypeId { get; set; }
- } 
+public class EmotionalBlog : BaseEntity 
+{
+       public int EmotionalTypeId { get; set; }
+      public EmotionalType? EmotionalTypes { get; set; }
+      public int BlogId { get; set; }
+      public Blog? Blogs { get; set; }
+}
