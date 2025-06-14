@@ -10,6 +10,6 @@ namespace Domain.Entities.Auth
         public int Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public ICollection<UserMemberRoles>? MemberRols { get; set; }
+        public ICollection<UserMemberRole>? UserMemberRoles { get; set; }
     }
 }

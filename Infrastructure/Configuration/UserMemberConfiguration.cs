@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configuration
 {
-    public class MemberConfiguration : IEntityTypeConfiguration<UserMember>
+    public class UserMemberConfiguration : IEntityTypeConfiguration<UserMember>
     {
         public void Configure(EntityTypeBuilder<UserMember> builder)
         {

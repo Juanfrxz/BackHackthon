@@ -9,5 +9,5 @@ public class RefreshToken : BaseEntity
        public DateTime Created { get; set; } 
        public DateTime Revoked { get; set; } 
        public int MemberId { get; set; }
-       public UserMember? UserMember { get; set; }
+       public UserMember? UserMembers { get; set; }
 }
