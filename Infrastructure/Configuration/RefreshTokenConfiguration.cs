@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<RefreshToken> builder)
         {
-            builder.ToTable("refresh_token");
+            builder.ToTable("refresh_tokens");
 
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

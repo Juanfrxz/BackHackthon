@@ -22,60 +22,58 @@ public class EmotionalBlogController : BaseApiController
     public async Task<ActionResult<IEnumerable<EmotionalBlogDto>>> Get()
     {
         var EmotionalBlog = await _unitOfWork.EmotionalBlogs.GetAllAsync();
-        return _mapper.Map<List<EmotionalBlogDto>>(EmotionalBlog);
+        return Ok(_mapper.Map<List<EmotionalBlogDto>>(EmotionalBlog));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{emotionalTypeId:int}/{blogId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<EmotionalBlogDto>> Get(int id)
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<EmotionalBlogDto>> Get(int emotionalTypeId, int blogId)
     {
-        var EmotionalBlog = await _unitOfWork.EmotionalBlogs.GetByIdAsync(id);
+        var EmotionalBlog = await _unitOfWork.EmotionalBlogs.GetByIdsAsync(emotionalTypeId, blogId);
         if (EmotionalBlog == null)
-        {
-            return NotFound($"EmotionalBlog with id {id} was not found.");
-        }
-        return _mapper.Map<EmotionalBlogDto>(EmotionalBlog);
+            return NotFound($"EmotionalBlog with keys ({emotionalTypeId}, {blogId}) not found.");
+
+        return Ok(_mapper.Map<EmotionalBlogDto>(EmotionalBlog));
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<EmotionalBlog>> Post(EmotionalBlogDto emotionalBlogDto)
+    public async Task<ActionResult<EmotionalBlogDto>> Post([FromBody] EmotionalBlogDto emotionalBlogDto)
     {
         var emotionalBlog = _mapper.Map<EmotionalBlog>(emotionalBlogDto);
         _unitOfWork.EmotionalBlogs.Add(emotionalBlog);
         await _unitOfWork.SaveAsync();
         if (emotionalBlogDto == null)
-        {
             return BadRequest();
-        }
-        return CreatedAtAction(nameof(Post), new { id = emotionalBlogDto.Id }, emotionalBlogDto);
+
+        return CreatedAtAction(nameof(Get), new { emotionalTypeId = emotionalBlogDto.EmotionalTypeId, blogId = emotionalBlogDto.BlogId }, emotionalBlogDto);
     }
 
-    // PUT: api/Productos/4
-    [HttpPut("{id}")]
+    [HttpPut("{emotionalTypeId:int}/{blogId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Put(int id, [FromBody] EmotionalBlogDto emotionalBlogDto)
+    public async Task<IActionResult> Put(int emotionalTypeId, int blogId, [FromBody] EmotionalBlogDto emotionalBlogDto)
     {
-        // Validación: objeto nulo
-        if (emotionalBlogDto == null)
+        if (emotionalBlogDto == null || emotionalBlogDto.EmotionalTypeId != emotionalTypeId || emotionalBlogDto.BlogId != blogId)
+            return BadRequest("Mismatched or invalid data.");
+        var existing = await _unitOfWork.EmotionalBlogs.GetByIdsAsync(emotionalTypeId, blogId);
+        if (existing == null)
             return NotFound();
         var emotionalBlog = _mapper.Map<EmotionalBlog>(emotionalBlogDto);
         _unitOfWork.EmotionalBlogs.Update(emotionalBlog);
         await _unitOfWork.SaveAsync();
         return Ok(emotionalBlogDto);
     }
-    
-    //DELETE: api/Productos
-    [HttpDelete("{id}")]
+
+    [HttpDelete("{emotionalTypeId:int}/{blogId:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int emotionalTypeId, int blogId)
     {
-        var EmotionalBlog = await _unitOfWork.EmotionalBlogs.GetByIdAsync(id);
+        var EmotionalBlog = await _unitOfWork.EmotionalBlogs.GetByIdsAsync(emotionalTypeId, blogId);
         if (EmotionalBlog == null)
             return NotFound();
         _unitOfWork.EmotionalBlogs.Remove(EmotionalBlog);
