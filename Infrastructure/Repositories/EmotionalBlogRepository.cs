@@ -13,4 +13,9 @@ public class EmotionalBlogRepository : GenericRepository<EmotionalBlog>, IEmotio
     {
         _context = context;
     }
+
+    public Task<EmotionalBlog?> GetByIdsAsync(int emotionalTypeId, int blogId)
+    {
+        throw new NotImplementedException();
+    }
 }

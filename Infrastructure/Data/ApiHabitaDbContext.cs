@@ -1,5 +1,6 @@
 using System.Reflection;
 using Domain.Entities;
+using Domain.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -17,8 +18,8 @@ namespace Infrastructure.Data
         public DbSet<EmotionalCategory> EmotionalCategorys { get; set; }
         public DbSet<EmotionalType> EmotionalTypes { get; set; }
         public DbSet<Habit> Habits { get; set; }
-        public DbSet<Member> Members { get; set; }
-        public DbSet<MemberRol> MemberRoles { get; set; }
+        public DbSet<UserMember> UserMembers { get; set; }
+        public DbSet<UserMemberRole> UserMemberRoles { get; set; }
         public DbSet<PersonHabit> PersonHabits { get; set; }
         public DbSet<PersonProfile> PersonProfiles { get; set; }
         public DbSet<PersonType> PersonTypes { get; set; }
@@ -26,7 +27,7 @@ namespace Infrastructure.Data
         public DbSet<SupportNetwork> SupportNetworks { get; set; }
         public DbSet<TypeRelation> TypeRelations { get; set; }
         public DbSet<RiskType> RiskTypes { get; set; }
-        public DbSet<Role> Rols { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Specialtie> SpecialtiesLinks { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Region> Regions { get; set; }
