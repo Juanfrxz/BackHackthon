@@ -13,4 +13,9 @@ public class SpecialtieRepository : GenericRepository<Specialtie>, ISpecialtieRe
     {
         _context = context;
     }
+
+    public Task<Specialtie?> GetByIdsAsync(int specialtyId, int professionalId)
+    {
+        throw new NotImplementedException();
+    }
 }

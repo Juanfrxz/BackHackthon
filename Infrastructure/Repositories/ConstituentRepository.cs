@@ -13,4 +13,9 @@ public class ConstituentRepository : GenericRepository<Constituent>, IConstituen
     {
         _context = context;
     }
+
+    public Task<Constituent?> GetByIdsAsync(int supportnetworkId, int priorityLevelId, int typeRelationId)
+    {
+        throw new NotImplementedException();
+    }
 }
