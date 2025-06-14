@@ -22,6 +22,110 @@ namespace Infrastructure.Data.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Domain.Entities.Auth.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("createdAt")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("name");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("updatedAt")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("roles", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Auth.UserMember", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("createdAt")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(80)
+                        .HasColumnType("character varying(80)")
+                        .HasColumnName("email");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text")
+                        .HasColumnName("password");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("updatedAt")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Username")
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("usermembers", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Auth.UserMemberRole", b =>
+                {
+                    b.Property<int>("MemberId")
+                        .HasColumnType("integer")
+                        .HasColumnName("memberId");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer")
+                        .HasColumnName("roleId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("createdAt")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp")
+                        .HasColumnName("updatedAt")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.HasKey("MemberId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("usermembers_roles", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.Blog", b =>
                 {
                     b.Property<int>("Id")
@@ -73,7 +177,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("RiskTypeId");
 
-                    b.ToTable("Blog", (string)null);
+                    b.ToTable("blogs", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.City", b =>
@@ -109,7 +213,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("RegionId");
 
-                    b.ToTable("City", (string)null);
+                    b.ToTable("cities", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Constituent", b =>
@@ -158,7 +262,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("TypeRelationId");
 
-                    b.ToTable("Constituent", (string)null);
+                    b.ToTable("constituents", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.ContactType", b =>
@@ -189,7 +293,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactType", (string)null);
+                    b.ToTable("contact_types", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Country", b =>
@@ -220,7 +324,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Country", (string)null);
+                    b.ToTable("countries", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.EmotionalBlog", b =>
@@ -249,7 +353,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("EmotionalBlog", (string)null);
+                    b.ToTable("emotionals_blogs", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.EmotionalCategory", b =>
@@ -280,7 +384,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmotionalCategory", (string)null);
+                    b.ToTable("emotionals_categories", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.EmotionalType", b =>
@@ -316,7 +420,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("EmotionalCategoryId");
 
-                    b.ToTable("EmotionalType", (string)null);
+                    b.ToTable("emotionals_types", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Habit", b =>
@@ -347,76 +451,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Habit", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Member", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
-                        .HasColumnName("createdAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(80)
-                        .HasColumnType("character varying(80)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("text")
-                        .HasColumnName("password");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
-                        .HasColumnName("updatedAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<string>("Username")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("username");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Member", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.MemberRol", b =>
-                {
-                    b.Property<int>("MemberId")
-                        .HasColumnType("integer")
-                        .HasColumnName("memberId");
-
-                    b.Property<int>("RolId")
-                        .HasColumnType("integer")
-                        .HasColumnName("rolId");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
-                        .HasColumnName("createdAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
-                        .HasColumnName("updatedAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.HasKey("MemberId", "RolId");
-
-                    b.HasIndex("RolId");
-
-                    b.ToTable("MemberRol", (string)null);
+                    b.ToTable("habits", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.PersonHabit", b =>
@@ -458,7 +493,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("PersonProfileId");
 
-                    b.ToTable("PersonHabit", (string)null);
+                    b.ToTable("persons_habits", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.PersonProfile", b =>
@@ -509,7 +544,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("PersonTypeId");
 
-                    b.ToTable("PersonProfile", (string)null);
+                    b.ToTable("persons_profiles", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.PersonType", b =>
@@ -540,7 +575,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PersonType", (string)null);
+                    b.ToTable("persons_types", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.PhonePerson", b =>
@@ -581,7 +616,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("PersonProfileId");
 
-                    b.ToTable("PhonePerson", (string)null);
+                    b.ToTable("phones_persons", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.PriorityLevel", b =>
@@ -612,7 +647,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PriorityLevel", (string)null);
+                    b.ToTable("priority_levels", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Profession", b =>
@@ -643,7 +678,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Profession", (string)null);
+                    b.ToTable("professions", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Professional", b =>
@@ -679,7 +714,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("ProfessionId");
 
-                    b.ToTable("Professional", (string)null);
+                    b.ToTable("professionals", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
@@ -732,7 +767,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("MemberId");
 
-                    b.ToTable("RefreshToken", (string)null);
+                    b.ToTable("refresh_tokens", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Region", b =>
@@ -768,7 +803,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("CountryId");
 
-                    b.ToTable("Region", (string)null);
+                    b.ToTable("regions", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.RiskType", b =>
@@ -799,42 +834,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RiskType", (string)null);
-                });
-
-            modelBuilder.Entity("Domain.Entities.Rol", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
-                        .HasColumnName("createdAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text")
-                        .HasColumnName("description");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("name");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
-                        .HasColumnName("updatedAt")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rol", (string)null);
+                    b.ToTable("risk_types", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Specialtie", b =>
@@ -863,7 +863,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasIndex("SpecialtyId");
 
-                    b.ToTable("Specialtie", (string)null);
+                    b.ToTable("specialties", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.Specialty", b =>
@@ -894,7 +894,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specialty", (string)null);
+                    b.ToTable("specialtys", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.SupportNetwork", b =>
@@ -925,7 +925,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SupportNetwork", (string)null);
+                    b.ToTable("support_networks", (string)null);
                 });
 
             modelBuilder.Entity("Domain.Entities.TypeRelation", b =>
@@ -956,7 +956,26 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TypeRelation", (string)null);
+                    b.ToTable("type_relations", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Auth.UserMemberRole", b =>
+                {
+                    b.HasOne("Domain.Entities.Auth.UserMember", "UserMembers")
+                        .WithMany("UserMemberRoles")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Auth.Role", "Role")
+                        .WithMany("UserMemberRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("UserMembers");
                 });
 
             modelBuilder.Entity("Domain.Entities.Blog", b =>
@@ -1054,25 +1073,6 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("EmotionalCategorys");
                 });
 
-            modelBuilder.Entity("Domain.Entities.MemberRol", b =>
-                {
-                    b.HasOne("Domain.Entities.Member", "Member")
-                        .WithMany("MemberRols")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Rol", "Rol")
-                        .WithMany("MemberRols")
-                        .HasForeignKey("RolId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Member");
-
-                    b.Navigation("Rol");
-                });
-
             modelBuilder.Entity("Domain.Entities.PersonHabit", b =>
                 {
                     b.HasOne("Domain.Entities.Habit", "Habit")
@@ -1100,7 +1100,7 @@ namespace Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Member", "Member")
+                    b.HasOne("Domain.Entities.Auth.UserMember", "UserMember")
                         .WithMany("PersonProfiles")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1114,9 +1114,9 @@ namespace Infrastructure.Data.Migrations
 
                     b.Navigation("City");
 
-                    b.Navigation("Member");
-
                     b.Navigation("PersonType");
+
+                    b.Navigation("UserMember");
                 });
 
             modelBuilder.Entity("Domain.Entities.PhonePerson", b =>
@@ -1159,13 +1159,13 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.RefreshToken", b =>
                 {
-                    b.HasOne("Domain.Entities.Member", "Member")
+                    b.HasOne("Domain.Entities.Auth.UserMember", "UserMembers")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Member");
+                    b.Navigation("UserMembers");
                 });
 
             modelBuilder.Entity("Domain.Entities.Region", b =>
@@ -1196,6 +1196,20 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Professional");
 
                     b.Navigation("Specialty");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Auth.Role", b =>
+                {
+                    b.Navigation("UserMemberRoles");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Auth.UserMember", b =>
+                {
+                    b.Navigation("PersonProfiles");
+
+                    b.Navigation("RefreshTokens");
+
+                    b.Navigation("UserMemberRoles");
                 });
 
             modelBuilder.Entity("Domain.Entities.Blog", b =>
@@ -1231,15 +1245,6 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Domain.Entities.Habit", b =>
                 {
                     b.Navigation("PersonHabits");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Member", b =>
-                {
-                    b.Navigation("MemberRols");
-
-                    b.Navigation("PersonProfiles");
-
-                    b.Navigation("RefreshTokens");
                 });
 
             modelBuilder.Entity("Domain.Entities.PersonProfile", b =>
@@ -1283,11 +1288,6 @@ namespace Infrastructure.Data.Migrations
             modelBuilder.Entity("Domain.Entities.RiskType", b =>
                 {
                     b.Navigation("Blogs");
-                });
-
-            modelBuilder.Entity("Domain.Entities.Rol", b =>
-                {
-                    b.Navigation("MemberRols");
                 });
 
             modelBuilder.Entity("Domain.Entities.Specialty", b =>
