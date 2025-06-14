@@ -3,13 +3,14 @@ using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Application.Interfaces;
+using Domain.Entities.Auth;
 
 namespace Infrastructure.Repositories;
-public class MemberRolRepository : GenericRepository<MemberRol>, IMemberRolRepository
+public class UserMemberRepository : GenericRepository<UserMember>, IUserMemberRepository
 {
     protected readonly ApiHabitaDbContext _context;
 
-    public MemberRolRepository(ApiHabitaDbContext context) : base(context)
+    public UserMemberRepository(ApiHabitaDbContext context) : base(context)
     {
         _context = context;
     }

@@ -1,6 +1,6 @@
-namespace Application.DTOs.Member;
+namespace Application.DTOs.UserMember;
 
-public class MemberDto
+public class UserMemberDto
 {
     public int Id { get; set; }
     public string? Username { get; set; }

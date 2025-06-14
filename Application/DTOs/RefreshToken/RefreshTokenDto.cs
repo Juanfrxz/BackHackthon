@@ -7,5 +7,5 @@ public class RefreshTokenDto
     public DateTime Expire { get; set; }
     public DateTime Created { get; set; }
     public DateTime Revoked { get; set; }
-    public int MemberId { get; set; }
+    public int UserMemberId { get; set; }
 }

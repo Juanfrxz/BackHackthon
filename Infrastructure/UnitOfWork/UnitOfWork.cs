@@ -17,8 +17,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IEmotionalCategoryRepository? _emotionalCategories;
     private IEmotionalTypeRepository? _emotionalTypes;
     private IHabitRepository? _habits;
-    private IMemberRepository? _members;
-    private IMemberRolRepository? _memberRols;
+    private IUserMemberRoleRepository? _userMemberRoles;
     private IPersonHabitRepository? _personHabits;
     private IPersonProfileRepository? _personProfiles;
     private IPersonTypeRepository? _personTypes;
@@ -29,11 +28,12 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IRefreshTokenRepository? _refreshTokens;
     private IRegionRepository? _regions;
     private IRiskTypeRepository? _riskTypes;
-    private IRolRepository? _rols;
+    private IRoleRepository? _roles;
     private ISpecialtieRepository? _specialties;
     private ISpecialtyRepository? _specialtys;
     private ISupportNetworkRepository? _supportNetworks;
     private ITypeRelationRepository? _typeRelations;
+    private IUserMemberRepository? _userMembers;
    public UnitOfWork(ApiHabitaDbContext context) 
    { 
        _context = context; 
@@ -128,24 +128,24 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _habits;
         }
     }
-    public IMemberRepository Members{
+    public IUserMemberRepository UserMembers{
         get
         {
-            if (_members == null)
+            if (_userMembers == null)
             {
-                _members = new MemberRepository (_context);
+                _userMembers = new UserMemberRepository (_context);
             }
-            return _members;
+            return _userMembers;
         }
     }
-    public IMemberRolRepository MemberRols{
+    public IUserMemberRoleRepository UserMemberRoles{
         get
         {
-            if (_memberRols == null)
+            if (_userMemberRoles == null)
             {
-                _memberRols = new MemberRolRepository (_context);
+                _userMemberRoles = new UserMemberRoleRepository (_context);
             }
-            return _memberRols;
+            return _userMemberRoles;
         }
     }
     public IPersonHabitRepository PersonHabits{
@@ -248,14 +248,14 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _riskTypes;
         }
     }
-    public IRolRepository Rols{
+    public IRoleRepository Roles{
         get
         {
-            if (_rols == null)
+            if (_roles == null)
             {
-                _rols = new RolRepository (_context);
+                _roles = new RoleRepository (_context);
             }
-            return _rols;
+            return _roles;
         }
     }
     public ISpecialtieRepository Specialties{

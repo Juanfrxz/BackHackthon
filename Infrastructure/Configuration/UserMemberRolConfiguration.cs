@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Configuration
 {
-    public class MemberRolConfiguration : IEntityTypeConfiguration<UserMemberRoles>
+    public class UserMemberRoleConfiguration : IEntityTypeConfiguration<UserMemberRole>
     {
-        public void Configure(EntityTypeBuilder<UserMemberRoles> builder)
+        public void Configure(EntityTypeBuilder<UserMemberRole> builder)
         {
             builder.ToTable("members_roles");
             
                         
-            builder.HasKey(x => new { x.MemberId, x.RolId });
+            builder.HasKey(x => new { x.MemberId, x.RoleId });
 
             builder.Property(x => x.MemberId)
                 .HasColumnName("memberId");
             
-            builder.Property(x => x.RolId)
-                .HasColumnName("rolId");
+            builder.Property(x => x.RoleId)
+                .HasColumnName("roleId");
 
             builder.Property(e => e.CreatedAt)
             .HasColumnName("createdAt")
@@ -32,13 +32,13 @@ namespace Infrastructure.Configuration
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .ValueGeneratedOnAddOrUpdate();
             
-            builder.HasOne(e => e.UserMember)
-                .WithMany(et => et.MemberRols)
+            builder.HasOne(e => e.UserMembers)
+                .WithMany(et => et.UserMemberRoles)
                 .HasForeignKey(e => e.MemberId);
 
             builder.HasOne(e => e.Role)
-                .WithMany(b => b.MemberRols)
-                .HasForeignKey(e => e.RolId);
+                .WithMany(b => b.UserMemberRoles)
+                .HasForeignKey(e => e.RoleId);
         }
     }
 } 
