@@ -14,4 +14,9 @@ public class UserMemberRoleRepository : GenericRepository<UserMemberRole>, IUser
     {
         _context = context;
     }
+
+    public Task<UserMemberRole?> GetByIdsAsync(int userMemberId, int roleId)
+    {
+        throw new NotImplementedException();
+    }
 }
