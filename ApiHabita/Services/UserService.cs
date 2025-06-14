@@ -11,7 +11,7 @@ using Microsoft.Extensions.Options;
 
 namespace ApiHabita.Services;
 
-public class UserService
+public class UserService : IUserService
 {
     private readonly JWT _jwt;
     private readonly IUnitOfWork _unitOfWork;
@@ -63,4 +63,18 @@ public class UserService
         }
     }
 
+    public Task<DataUserDto> GetTokenAsync(LoginDto model)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<string> AddRoleAsync(AddRoleDto model)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<DataUserDto> RefreshTokenAsync(string refreshToken)
+    {
+        throw new NotImplementedException();
+    }
 }
