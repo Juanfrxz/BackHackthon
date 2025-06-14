@@ -17,7 +17,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IEmotionalCategoryRepository? _emotionalCategories;
     private IEmotionalTypeRepository? _emotionalTypes;
     private IHabitRepository? _habits;
-    private IUserMemberRolRepository? _userMemberRols;
+    private IUserMemberRoleRepository? _userMemberRoles;
     private IPersonHabitRepository? _personHabits;
     private IPersonProfileRepository? _personProfiles;
     private IPersonTypeRepository? _personTypes;
@@ -28,7 +28,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private IRefreshTokenRepository? _refreshTokens;
     private IRegionRepository? _regions;
     private IRiskTypeRepository? _riskTypes;
-    private IRolRepository? _rols;
+    private IRoleRepository? _roles;
     private ISpecialtieRepository? _specialties;
     private ISpecialtyRepository? _specialtys;
     private ISupportNetworkRepository? _supportNetworks;
@@ -138,14 +138,14 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _userMembers;
         }
     }
-    public IUserMemberRolRepository UserMemberRols{
+    public IUserMemberRoleRepository UserMemberRoles{
         get
         {
-            if (_userMemberRols == null)
+            if (_userMemberRoles == null)
             {
-                _userMemberRols = new UserMemberRolRepository (_context);
+                _userMemberRoles = new UserMemberRoleRepository (_context);
             }
-            return _userMemberRols;
+            return _userMemberRoles;
         }
     }
     public IPersonHabitRepository PersonHabits{
@@ -248,14 +248,14 @@ public class UnitOfWork : IUnitOfWork, IDisposable
             return _riskTypes;
         }
     }
-    public IRolRepository Rols{
+    public IRoleRepository Roles{
         get
         {
-            if (_rols == null)
+            if (_roles == null)
             {
-                _rols = new RolRepository (_context);
+                _roles = new RoleRepository (_context);
             }
-            return _rols;
+            return _roles;
         }
     }
     public ISpecialtieRepository Specialties{

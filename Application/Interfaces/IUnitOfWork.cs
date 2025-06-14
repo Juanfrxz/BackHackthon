@@ -10,7 +10,7 @@ public interface IUnitOfWork {
         IEmotionalTypeRepository EmotionalTypes { get; }
         IHabitRepository Habits { get; }
         IUserMemberRepository UserMembers { get; }
-        IUserMemberRolRepository UserMemberRols { get; }
+        IUserMemberRoleRepository UserMemberRoles { get; }
         IPersonHabitRepository PersonHabits { get; }
         IPersonProfileRepository PersonProfiles { get; }
         IPersonTypeRepository PersonTypes { get; }
@@ -21,7 +21,7 @@ public interface IUnitOfWork {
         IRefreshTokenRepository RefreshTokens { get; }
         IRegionRepository Regions { get; }
         IRiskTypeRepository RiskTypes { get; }
-        IRolRepository Rols { get; }
+        IRoleRepository Roles { get; }
         ISpecialtieRepository Specialties { get; }
         ISpecialtyRepository Specialtys { get; }
         ISupportNetworkRepository SupportNetworks { get; }

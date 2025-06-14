@@ -48,7 +48,7 @@ namespace Infrastructure.Configuration
                 .HasDefaultValueSql("CURRENT_TIMESTAMP")
                 .ValueGeneratedOnAddOrUpdate();
                 
-            builder.HasOne(e => e.UserMember)
+            builder.HasOne(e => e.UserMembers)
                 .WithMany(m => m.RefreshTokens)
                 .HasForeignKey(e => e.MemberId);
         }

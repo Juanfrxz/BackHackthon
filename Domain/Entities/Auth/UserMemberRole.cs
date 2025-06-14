@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Auth
 {
-    public class UserMemberRoles : BaseEntity 
+    public class UserMemberRole : BaseEntity 
     {
         public int MemberId { get; set; }
-        public UserMember? UserMember { get; set; }
-        public int RolId { get; set; }
+        public UserMember? UserMembers { get; set; } = null!;
+        public int RoleId { get; set; }
         public Role? Role { get; set; }
     }
 }
