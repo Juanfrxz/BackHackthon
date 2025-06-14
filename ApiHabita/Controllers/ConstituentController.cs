@@ -22,60 +22,58 @@ public class ConstituentController : BaseApiController
     public async Task<ActionResult<IEnumerable<ConstituentDto>>> Get()
     {
         var Constituent = await _unitOfWork.Constituents.GetAllAsync();
-        return _mapper.Map<List<ConstituentDto>>(Constituent);
+        return Ok(_mapper.Map<List<ConstituentDto>>(Constituent));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{supportnetworkId:int}/{priorityLevelId:int}/{typeRelationId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<ConstituentDto>> Get(int id)
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<ConstituentDto>> Get(int supportnetworkId, int priorityLevelId, int typeRelationId)
     {
-        var Constituent = await _unitOfWork.Constituents.GetByIdAsync(id);
+        var Constituent = await _unitOfWork.Constituents.GetByIdsAsync(supportnetworkId, priorityLevelId, typeRelationId);
         if (Constituent == null)
-        {
-            return NotFound($"Constituent with id {id} was not found.");
-        }
-        return _mapper.Map<ConstituentDto>(Constituent);
+            return NotFound($"Constituent with keys ({supportnetworkId}, {priorityLevelId}, {typeRelationId}) not found.");
+
+        return Ok(_mapper.Map<ConstituentDto>(Constituent));
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Constituent>> Post(ConstituentDto constituentDto)
+    public async Task<ActionResult<ConstituentDto>> Post([FromBody] ConstituentDto constituentDto)
     {
         var constituent = _mapper.Map<Constituent>(constituentDto);
         _unitOfWork.Constituents.Add(constituent);
         await _unitOfWork.SaveAsync();
         if (constituentDto == null)
-        {
             return BadRequest();
-        }
-        return CreatedAtAction(nameof(Post), new { id = constituentDto.Id }, constituentDto);
+
+        return CreatedAtAction(nameof(Get), new { supportnetworkId = constituentDto.SupportnetworkId, priorityLevelId = constituentDto.PriorityLevelId, typeRelationId = constituentDto.TypeRelationId }, constituentDto);
     }
 
-    // PUT: api/Productos/4
-    [HttpPut("{id}")]
+    [HttpPut("{supportnetworkId:int}/{priorityLevelId:int}/{typeRelationId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Put(int id, [FromBody] ConstituentDto constituentDto)
+    public async Task<IActionResult> Put(int supportnetworkId, int priorityLevelId, int typeRelationId, [FromBody] ConstituentDto constituentDto)
     {
-        // Validación: objeto nulo
-        if (constituentDto == null)
+        if (constituentDto == null || constituentDto.SupportnetworkId != supportnetworkId || constituentDto.PersonprofileId != priorityLevelId || constituentDto.TypeRelationId != typeRelationId)
+            return BadRequest("Mismatched or invalid data.");
+        var existing = await _unitOfWork.Constituents.GetByIdsAsync(supportnetworkId, priorityLevelId, typeRelationId);
+        if (existing == null)
             return NotFound();
         var constituent = _mapper.Map<Constituent>(constituentDto);
         _unitOfWork.Constituents.Update(constituent);
         await _unitOfWork.SaveAsync();
         return Ok(constituentDto);
     }
-    
-    //DELETE: api/Productos
-    [HttpDelete("{id}")]
+
+    [HttpDelete("{supportnetworkId:int}/{priorityLevelId:int}/{typeRelationId:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int supportnetworkId, int priorityLevelId, int typeRelationId)
     {
-        var Constituent = await _unitOfWork.Constituents.GetByIdAsync(id);
+        var Constituent = await _unitOfWork.Constituents.GetByIdsAsync(supportnetworkId, priorityLevelId, typeRelationId);
         if (Constituent == null)
             return NotFound();
         _unitOfWork.Constituents.Remove(Constituent);

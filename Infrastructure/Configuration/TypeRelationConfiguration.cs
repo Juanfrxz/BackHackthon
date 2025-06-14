@@ -8,7 +8,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<TypeRelation> builder)
         {
-            builder.ToTable("TypeRelation");
+            builder.ToTable("type_relations");
             
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

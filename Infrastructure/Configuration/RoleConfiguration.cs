@@ -9,7 +9,7 @@ namespace Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.ToTable("role");
+            builder.ToTable("roles");
             
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)

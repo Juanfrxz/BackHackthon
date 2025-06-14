@@ -22,60 +22,58 @@ public class SpecialtieController : BaseApiController
     public async Task<ActionResult<IEnumerable<SpecialtieDto>>> Get()
     {
         var Specialtie = await _unitOfWork.Specialties.GetAllAsync();
-        return _mapper.Map<List<SpecialtieDto>>(Specialtie);
+        return Ok(_mapper.Map<List<SpecialtieDto>>(Specialtie));
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{specialtyId:int}/{professionalId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<SpecialtieDto>> Get(int id)
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<SpecialtieDto>> Get(int specialtyId, int professionalId)
     {
-        var Specialtie = await _unitOfWork.Specialties.GetByIdAsync(id);
+        var Specialtie = await _unitOfWork.Specialties.GetByIdsAsync(specialtyId, professionalId);
         if (Specialtie == null)
-        {
-            return NotFound($"Specialtie with id {id} was not found.");
-        }
-        return _mapper.Map<SpecialtieDto>(Specialtie);
+            return NotFound($"Specialtie with keys ({specialtyId}, {professionalId}) not found.");
+
+        return Ok(_mapper.Map<SpecialtieDto>(Specialtie));
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<Specialtie>> Post(SpecialtieDto specialtieDto)
+    public async Task<ActionResult<SpecialtieDto>> Post([FromBody] SpecialtieDto specialtieDto)
     {
         var specialtie = _mapper.Map<Specialtie>(specialtieDto);
         _unitOfWork.Specialties.Add(specialtie);
         await _unitOfWork.SaveAsync();
         if (specialtieDto == null)
-        {
             return BadRequest();
-        }
-        return CreatedAtAction(nameof(Post), new { id = specialtieDto.Id }, specialtieDto);
+
+        return CreatedAtAction(nameof(Get), new { specialtyId = specialtieDto.SpecialtyId, professionalId = specialtieDto.ProfessionalId }, specialtieDto);
     }
 
-    // PUT: api/Productos/4
-    [HttpPut("{id}")]
+    [HttpPut("{specialtyId:int}/{professionalId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Put(int id, [FromBody] SpecialtieDto specialtieDto)
+    public async Task<IActionResult> Put(int specialtyId, int professionalId, [FromBody] SpecialtieDto specialtieDto)
     {
-        // Validación: objeto nulo
-        if (specialtieDto == null)
+        if (specialtieDto == null || specialtieDto.SpecialtyId != specialtyId || specialtieDto.ProfessionalId != professionalId)
+            return BadRequest("Mismatched or invalid data.");
+        var existing = await _unitOfWork.Specialties.GetByIdsAsync(specialtyId, professionalId);
+        if (existing == null)
             return NotFound();
         var specialtie = _mapper.Map<Specialtie>(specialtieDto);
         _unitOfWork.Specialties.Update(specialtie);
         await _unitOfWork.SaveAsync();
         return Ok(specialtieDto);
     }
-    
-    //DELETE: api/Productos
-    [HttpDelete("{id}")]
+
+    [HttpDelete("{specialtyId:int}/{professionalId:int}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete(int id)
+    public async Task<IActionResult> Delete(int specialtyId, int professionalId)
     {
-        var Specialtie = await _unitOfWork.Specialties.GetByIdAsync(id);
+        var Specialtie = await _unitOfWork.Specialties.GetByIdsAsync(specialtyId, professionalId);
         if (Specialtie == null)
             return NotFound();
         _unitOfWork.Specialties.Remove(Specialtie);
