@@ -85,6 +85,24 @@ public static class ApplicationServiceExtensions
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Key"]!))
                 };
             });
+            // 3. Authorization – Policies
+            services.AddAuthorization(options =>
+            {
+                // Política que exige rol Admin
+                options.AddPolicy("Admins", policy =>
+                    policy.RequireRole("Admin"));
+
+                // Política que exige claim Subscription = "Premium"
+                options.AddPolicy("Patients", policy =>
+                    policy.RequireClaim("Subscription", "Premium"));
+
+                // Política compuesta: rol Admin o claim Premium
+                options.AddPolicy("PatientOPremium", policy =>
+                    policy.RequireAssertion(context =>
+                        context.User.IsInRole("Patient")
+                    || context.User.HasClaim(c => 
+                            c.Type == "Subscription" && c.Value == "Premium")));
+            });
     }
     public static void AddValidationErrors(this IServiceCollection services)
     {
