@@ -12,10 +12,10 @@ namespace Infrastructure.Configuration
             builder.ToTable("usermembers_roles");
             
                         
-            builder.HasKey(x => new { x.MemberId, x.RoleId });
+            builder.HasKey(x => new { x.UserMemberId, x.RoleId });
 
-            builder.Property(x => x.MemberId)
-                .HasColumnName("memberId");
+            builder.Property(x => x.UserMemberId)
+                .HasColumnName("UserMemberId");
             
             builder.Property(x => x.RoleId)
                 .HasColumnName("roleId");
@@ -34,7 +34,7 @@ namespace Infrastructure.Configuration
             
             builder.HasOne(e => e.UserMembers)
                 .WithMany(et => et.UserMemberRoles)
-                .HasForeignKey(e => e.MemberId);
+                .HasForeignKey(e => e.UserMemberId);
 
             builder.HasOne(e => e.Role)
                 .WithMany(b => b.UserMemberRoles)

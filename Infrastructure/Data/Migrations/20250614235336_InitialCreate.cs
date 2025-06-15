@@ -133,22 +133,6 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "roles",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    description = table.Column<string>(type: "text", nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_roles", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "specialtys",
                 columns: table => new
                 {
@@ -280,29 +264,25 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "usermembers_roles",
+                name: "roles",
                 columns: table => new
                 {
-                    memberId = table.Column<int>(type: "integer", nullable: false),
-                    roleId = table.Column<int>(type: "integer", nullable: false),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    description = table.Column<string>(type: "text", nullable: true),
+                    UserMemberId = table.Column<int>(type: "integer", nullable: true),
                     createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_usermembers_roles", x => new { x.memberId, x.roleId });
+                    table.PrimaryKey("PK_roles", x => x.id);
                     table.ForeignKey(
-                        name: "FK_usermembers_roles_roles_roleId",
-                        column: x => x.roleId,
-                        principalTable: "roles",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_usermembers_roles_usermembers_memberId",
-                        column: x => x.memberId,
+                        name: "FK_roles_usermembers_UserMemberId",
+                        column: x => x.UserMemberId,
                         principalTable: "usermembers",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -323,6 +303,32 @@ namespace Infrastructure.Data.Migrations
                         name: "FK_cities_regions_RegionId",
                         column: x => x.RegionId,
                         principalTable: "regions",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "usermembers_roles",
+                columns: table => new
+                {
+                    UserMemberId = table.Column<int>(type: "integer", nullable: false),
+                    roleId = table.Column<int>(type: "integer", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_usermembers_roles", x => new { x.UserMemberId, x.roleId });
+                    table.ForeignKey(
+                        name: "FK_usermembers_roles_roles_roleId",
+                        column: x => x.roleId,
+                        principalTable: "roles",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_usermembers_roles_usermembers_UserMemberId",
+                        column: x => x.UserMemberId,
+                        principalTable: "usermembers",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -670,6 +676,11 @@ namespace Infrastructure.Data.Migrations
                 name: "IX_regions_CountryId",
                 table: "regions",
                 column: "CountryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_roles_UserMemberId",
+                table: "roles",
+                column: "UserMemberId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_specialties_specialtyId",

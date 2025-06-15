@@ -7,9 +7,9 @@ namespace Domain.Entities.Auth
 {
     public class UserMemberRole : BaseEntity 
     {
-        public int MemberId { get; set; }
-        public UserMember? UserMembers { get; set; } = null!;
+        public int UserMemberId { get; set; }
+        public UserMember UserMembers { get; set; } = null!;
         public int RoleId { get; set; }
-        public Role? Role { get; set; }
+        public Role Role { get; set; }
     }
 }

@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApiHabitaDbContext))]
-    [Migration("20250614205905_InitialCreate")]
+    [Migration("20250614235336_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -55,7 +55,12 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<int?>("UserMemberId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserMemberId");
 
                     b.ToTable("roles", (string)null);
                 });
@@ -102,9 +107,9 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Auth.UserMemberRole", b =>
                 {
-                    b.Property<int>("MemberId")
+                    b.Property<int>("UserMemberId")
                         .HasColumnType("integer")
-                        .HasColumnName("memberId");
+                        .HasColumnName("UserMemberId");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("integer")
@@ -122,7 +127,7 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.HasKey("MemberId", "RoleId");
+                    b.HasKey("UserMemberId", "RoleId");
 
                     b.HasIndex("RoleId");
 
@@ -962,17 +967,24 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("type_relations", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.Auth.Role", b =>
+                {
+                    b.HasOne("Domain.Entities.Auth.UserMember", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("UserMemberId");
+                });
+
             modelBuilder.Entity("Domain.Entities.Auth.UserMemberRole", b =>
                 {
-                    b.HasOne("Domain.Entities.Auth.UserMember", "UserMembers")
-                        .WithMany("UserMemberRoles")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.Entities.Auth.Role", "Role")
                         .WithMany("UserMemberRoles")
                         .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Auth.UserMember", "UserMembers")
+                        .WithMany("UserMemberRoles")
+                        .HasForeignKey("UserMemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1211,6 +1223,8 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("PersonProfiles");
 
                     b.Navigation("RefreshTokens");
+
+                    b.Navigation("Roles");
 
                     b.Navigation("UserMemberRoles");
                 });

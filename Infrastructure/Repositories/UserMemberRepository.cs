@@ -14,4 +14,11 @@ public class UserMemberRepository : GenericRepository<UserMember>, IUserMemberRe
     {
         _context = context;
     }
+
+    public async Task<UserMember?> GetByUserNameAsync(string userName)
+    {
+        return await _context.UserMembers
+                            .Include(u => u.Roles)
+                            .FirstOrDefaultAsync(u => u.Username.ToLower() == userName.ToLower());
+    }
 }
