@@ -255,6 +255,30 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "members_roles",
+                columns: table => new
+                {
+                    UserMemberId = table.Column<int>(type: "integer", nullable: false),
+                    RoleId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_members_roles", x => new { x.RoleId, x.UserMemberId });
+                    table.ForeignKey(
+                        name: "FK_members_roles_roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "roles",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_members_roles_usermembers_UserMemberId",
+                        column: x => x.UserMemberId,
+                        principalTable: "usermembers",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "refresh_tokens",
                 columns: table => new
                 {
@@ -274,56 +298,6 @@ namespace Infrastructure.Data.Migrations
                     table.ForeignKey(
                         name: "FK_refresh_tokens_usermembers_MemberId",
                         column: x => x.MemberId,
-                        principalTable: "usermembers",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RoleUserMember",
-                columns: table => new
-                {
-                    RolesId = table.Column<int>(type: "integer", nullable: false),
-                    UsersMembersId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RoleUserMember", x => new { x.RolesId, x.UsersMembersId });
-                    table.ForeignKey(
-                        name: "FK_RoleUserMember_roles_RolesId",
-                        column: x => x.RolesId,
-                        principalTable: "roles",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RoleUserMember_usermembers_UsersMembersId",
-                        column: x => x.UsersMembersId,
-                        principalTable: "usermembers",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "usermembers_roles",
-                columns: table => new
-                {
-                    UserMemberId = table.Column<int>(type: "integer", nullable: false),
-                    roleId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_usermembers_roles", x => new { x.UserMemberId, x.roleId });
-                    table.ForeignKey(
-                        name: "FK_usermembers_roles_roles_roleId",
-                        column: x => x.roleId,
-                        principalTable: "roles",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_usermembers_roles_usermembers_UserMemberId",
-                        column: x => x.UserMemberId,
                         principalTable: "usermembers",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -641,6 +615,11 @@ namespace Infrastructure.Data.Migrations
                 column: "EmotionalCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_members_roles_UserMemberId",
+                table: "members_roles",
+                column: "UserMemberId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_persons_habits_HabitId",
                 table: "persons_habits",
                 column: "HabitId");
@@ -696,19 +675,9 @@ namespace Infrastructure.Data.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleUserMember_UsersMembersId",
-                table: "RoleUserMember",
-                column: "UsersMembersId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_specialties_specialtyId",
                 table: "specialties",
                 column: "specialtyId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_usermembers_roles_roleId",
-                table: "usermembers_roles",
-                column: "roleId");
         }
 
         /// <inheritdoc />
@@ -721,6 +690,9 @@ namespace Infrastructure.Data.Migrations
                 name: "emotionals_blogs");
 
             migrationBuilder.DropTable(
+                name: "members_roles");
+
+            migrationBuilder.DropTable(
                 name: "persons_habits");
 
             migrationBuilder.DropTable(
@@ -730,13 +702,7 @@ namespace Infrastructure.Data.Migrations
                 name: "refresh_tokens");
 
             migrationBuilder.DropTable(
-                name: "RoleUserMember");
-
-            migrationBuilder.DropTable(
                 name: "specialties");
-
-            migrationBuilder.DropTable(
-                name: "usermembers_roles");
 
             migrationBuilder.DropTable(
                 name: "priority_levels");
@@ -754,6 +720,9 @@ namespace Infrastructure.Data.Migrations
                 name: "emotionals_types");
 
             migrationBuilder.DropTable(
+                name: "roles");
+
+            migrationBuilder.DropTable(
                 name: "habits");
 
             migrationBuilder.DropTable(
@@ -764,9 +733,6 @@ namespace Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "specialtys");
-
-            migrationBuilder.DropTable(
-                name: "roles");
 
             migrationBuilder.DropTable(
                 name: "risk_types");

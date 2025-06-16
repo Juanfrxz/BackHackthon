@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities.Auth
 {
-    public class UserMemberRole : BaseEntity 
+    public class UserMemberRole
     {
         public int UserMemberId { get; set; }
         public UserMember UserMembers { get; set; } = null!;
