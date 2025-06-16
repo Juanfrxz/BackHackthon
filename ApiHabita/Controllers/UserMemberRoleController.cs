@@ -38,20 +38,6 @@ public class UserMemberRoleController : BaseApiController
         return Ok(_mapper.Map<UserMemberRoleDto>(UserMemberRole));
     }
 
-    [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<UserMemberRoleDto>> Post([FromBody] UserMemberRoleDto userMemberRoleDto)
-    {
-        var userMemberRole = _mapper.Map<UserMemberRole>(userMemberRoleDto);
-        _unitOfWork.UserMemberRoles.Add(userMemberRole);
-        await _unitOfWork.SaveAsync();
-        if (userMemberRoleDto == null)
-            return BadRequest();
-
-        return CreatedAtAction(nameof(Get), new { userMemberIdId = userMemberRoleDto.UserMemberId, roleId = userMemberRoleDto.RoleId }, userMemberRoleDto);
-    }
-
     [HttpPut("{userMemberId:int}/{roleId:int}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
