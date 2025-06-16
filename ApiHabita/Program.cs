@@ -18,7 +18,6 @@ builder.Services.AddDbContext<ApiHabitaDbContext>(options =>
 {
     string connectionString  = builder.Configuration.GetConnectionString("DefaultConnection")!;
     options.UseNpgsql(connectionString);
-    options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 });
 var app = builder.Build();
 

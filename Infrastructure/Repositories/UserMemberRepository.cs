@@ -18,6 +18,7 @@ public class UserMemberRepository : GenericRepository<UserMember>, IUserMemberRe
     public async Task<UserMember?> GetByUserNameAsync(string userName)
     {
         return await _context.UserMembers
+                            .Include(u => u.UserMemberRoles)
                             .Include(u => u.Roles)
                             .FirstOrDefaultAsync(u => u.Username.ToLower() == userName.ToLower());
     }

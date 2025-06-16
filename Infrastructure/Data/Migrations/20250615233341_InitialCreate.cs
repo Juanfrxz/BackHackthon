@@ -19,8 +19,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -34,8 +34,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -49,8 +49,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -64,8 +64,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -79,8 +79,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -94,8 +94,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -109,8 +109,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -124,12 +124,28 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_risk_types", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "roles",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    description = table.Column<string>(type: "text", nullable: true),
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_roles", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -139,8 +155,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -154,8 +170,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -169,8 +185,8 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -186,8 +202,8 @@ namespace Infrastructure.Data.Migrations
                     username = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     email = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: true),
                     password = table.Column<string>(type: "text", nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -202,8 +218,8 @@ namespace Infrastructure.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     CountryId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -224,8 +240,8 @@ namespace Infrastructure.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     description = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     EmotionalCategoryId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -245,12 +261,12 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     token = table.Column<string>(type: "text", nullable: true),
-                    expire = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    created = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    revoked = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    expire = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    revoked = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     MemberId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -264,45 +280,25 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "roles",
+                name: "RoleUserMember",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    description = table.Column<string>(type: "text", nullable: true),
-                    UserMemberId = table.Column<int>(type: "integer", nullable: true),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    RolesId = table.Column<int>(type: "integer", nullable: false),
+                    UsersMembersId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_roles", x => x.id);
+                    table.PrimaryKey("PK_RoleUserMember", x => new { x.RolesId, x.UsersMembersId });
                     table.ForeignKey(
-                        name: "FK_roles_usermembers_UserMemberId",
-                        column: x => x.UserMemberId,
+                        name: "FK_RoleUserMember_roles_RolesId",
+                        column: x => x.RolesId,
+                        principalTable: "roles",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoleUserMember_usermembers_UsersMembersId",
+                        column: x => x.UsersMembersId,
                         principalTable: "usermembers",
-                        principalColumn: "id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "cities",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
-                    RegionId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_cities", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_cities_regions_RegionId",
-                        column: x => x.RegionId,
-                        principalTable: "regions",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -313,8 +309,8 @@ namespace Infrastructure.Data.Migrations
                 {
                     UserMemberId = table.Column<int>(type: "integer", nullable: false),
                     roleId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -334,6 +330,28 @@ namespace Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "cities",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    RegionId = table.Column<int>(type: "integer", nullable: false),
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cities", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_cities_regions_RegionId",
+                        column: x => x.RegionId,
+                        principalTable: "regions",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "persons_profiles",
                 columns: table => new
                 {
@@ -344,8 +362,8 @@ namespace Infrastructure.Data.Migrations
                     CityId = table.Column<int>(type: "integer", nullable: false),
                     PersonTypeId = table.Column<int>(type: "integer", nullable: false),
                     MemberId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -377,13 +395,13 @@ namespace Infrastructure.Data.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     summary = table.Column<string>(type: "text", nullable: true),
-                    logDate = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    logDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     transcription = table.Column<string>(type: "text", nullable: true),
                     perceptionAnalysis = table.Column<string>(type: "text", nullable: true),
                     PersonProfileId = table.Column<int>(type: "integer", nullable: false),
                     RiskTypeId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -412,8 +430,8 @@ namespace Infrastructure.Data.Migrations
                     memberName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     email = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: true),
                     PersonprofileId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -450,11 +468,11 @@ namespace Infrastructure.Data.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    registrationDate = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    registrationDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     PersonProfileId = table.Column<int>(type: "integer", nullable: false),
                     HabitId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -482,8 +500,8 @@ namespace Infrastructure.Data.Migrations
                     phoneNumber = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     ContactTypeId = table.Column<int>(type: "integer", nullable: false),
                     PersonProfileId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -510,8 +528,8 @@ namespace Infrastructure.Data.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ProfessionId = table.Column<int>(type: "integer", nullable: false),
                     PersonProfileId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -536,8 +554,8 @@ namespace Infrastructure.Data.Migrations
                 {
                     emotionalTypeId = table.Column<int>(type: "integer", nullable: false),
                     blogId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -562,8 +580,8 @@ namespace Infrastructure.Data.Migrations
                 {
                     professionalId = table.Column<int>(type: "integer", nullable: false),
                     specialtyId = table.Column<int>(type: "integer", nullable: false),
-                    createdAt = table.Column<DateTime>(type: "timestamp", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updatedAt = table.Column<DateTime>(type: "timestamp", nullable: true, defaultValueSql: "CURRENT_TIMESTAMP")
+                    createdAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -678,9 +696,9 @@ namespace Infrastructure.Data.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_roles_UserMemberId",
-                table: "roles",
-                column: "UserMemberId");
+                name: "IX_RoleUserMember_UsersMembersId",
+                table: "RoleUserMember",
+                column: "UsersMembersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_specialties_specialtyId",
@@ -710,6 +728,9 @@ namespace Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "refresh_tokens");
+
+            migrationBuilder.DropTable(
+                name: "RoleUserMember");
 
             migrationBuilder.DropTable(
                 name: "specialties");

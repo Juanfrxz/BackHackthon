@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApiHabitaDbContext))]
-    [Migration("20250614235336_InitialCreate")]
+    [Migration("20250615233341_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -36,7 +36,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -49,18 +49,13 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<int?>("UserMemberId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserMemberId");
 
                     b.ToTable("roles", (string)null);
                 });
@@ -76,7 +71,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -89,9 +84,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("password");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -117,13 +112,13 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -145,13 +140,13 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime>("LogDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("logDate")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -173,9 +168,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("transcription");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -199,7 +194,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -211,9 +206,9 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("RegionId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -239,7 +234,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -256,9 +251,9 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("PersonprofileId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -284,7 +279,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -293,9 +288,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -315,7 +310,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -324,9 +319,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -347,13 +342,13 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -375,7 +370,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -384,9 +379,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -406,7 +401,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -418,9 +413,9 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("EmotionalCategoryId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -442,7 +437,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -451,9 +446,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -473,7 +468,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -485,13 +480,13 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("RegistrationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("registrationDate")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -518,7 +513,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -538,9 +533,9 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("PersonTypeId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -566,7 +561,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -575,9 +570,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -600,7 +595,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -612,9 +607,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(20)")
                         .HasColumnName("phoneNumber");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -638,7 +633,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -647,9 +642,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -669,7 +664,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -678,9 +673,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -700,7 +695,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -710,9 +705,9 @@ namespace Infrastructure.Data.Migrations
                     b.Property<int>("ProfessionId")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -736,19 +731,19 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("created")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime>("Expire")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("expire")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -757,7 +752,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("Revoked")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("revoked")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -765,9 +760,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("text")
                         .HasColumnName("token");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -792,7 +787,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -801,9 +796,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -825,7 +820,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -834,9 +829,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -857,13 +852,13 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -885,7 +880,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -894,9 +889,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -916,7 +911,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -925,9 +920,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("name");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -947,7 +942,7 @@ namespace Infrastructure.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("createdAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -956,9 +951,9 @@ namespace Infrastructure.Data.Migrations
                         .HasColumnType("character varying(50)")
                         .HasColumnName("description");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("timestamp")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updatedAt")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -967,11 +962,19 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("type_relations", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Auth.Role", b =>
+            modelBuilder.Entity("RoleUserMember", b =>
                 {
-                    b.HasOne("Domain.Entities.Auth.UserMember", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("UserMemberId");
+                    b.Property<int>("RolesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsersMembersId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("RolesId", "UsersMembersId");
+
+                    b.HasIndex("UsersMembersId");
+
+                    b.ToTable("RoleUserMember");
                 });
 
             modelBuilder.Entity("Domain.Entities.Auth.UserMemberRole", b =>
@@ -1213,6 +1216,21 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("Specialty");
                 });
 
+            modelBuilder.Entity("RoleUserMember", b =>
+                {
+                    b.HasOne("Domain.Entities.Auth.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Auth.UserMember", null)
+                        .WithMany()
+                        .HasForeignKey("UsersMembersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Domain.Entities.Auth.Role", b =>
                 {
                     b.Navigation("UserMemberRoles");
@@ -1223,8 +1241,6 @@ namespace Infrastructure.Data.Migrations
                     b.Navigation("PersonProfiles");
 
                     b.Navigation("RefreshTokens");
-
-                    b.Navigation("Roles");
 
                     b.Navigation("UserMemberRoles");
                 });

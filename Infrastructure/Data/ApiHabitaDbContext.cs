@@ -2,6 +2,8 @@ using System.Reflection;
 using Domain.Entities;
 using Domain.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Infrastructure.Data
 {
@@ -39,6 +41,14 @@ namespace Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            // Configure all DateTime properties to use timestamp with time zone
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties().Where(p => p.ClrType == typeof(DateTime)))
+                {
+                    property.SetColumnType("timestamp with time zone");
+                }
+            }
         }
     }
 

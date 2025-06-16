@@ -86,8 +86,8 @@ public class UserService : IUserService
             datosUsuario.Token = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
             datosUsuario.Email = usuario.Email;
             datosUsuario.UserName = usuario.Username;
-            datosUsuario.Roles = usuario.UserMemberRoles
-                                            .Select(u => u.Role.Name)
+            datosUsuario.Roles = usuario.Roles
+                                            .Select(r => r.Name)
                                             .ToList();
             return datosUsuario;
         }
